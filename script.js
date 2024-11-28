@@ -11,6 +11,15 @@ function verify(field) {
       validatePassword();
       break;
   }
+  if (
+    document.getElementById("email").style.borderColor == "green" &&
+    document.getElementById("user").style.borderColor == "green" &&
+    document.getElementById("password").style.borderColor == "green"
+  ) {
+    document.getElementById("submitBtn").hidden = false;
+  } else {
+    document.getElementById("submitBtn").hidden = true;
+  }
 }
 
 function validateEmail() {
@@ -38,35 +47,38 @@ function validateUser() {
 }
 
 function updatePasswordStrength(password) {
-  const strengthBar = document.getElementById('passwordStrength');
+  const strengthBar = document.getElementById("passwordStrength");
   const capitalLetters = (password.match(/[A-Z]/g) || []).length;
-  const symbols = (password.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []).length;
+  const symbols = (
+    password.match(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/g) || []
+  ).length;
   const hyphens = (password.match(/-/g) || []).length;
-  
+
   let strength = 0;
-  
+
   // Calculate strength percentage
   if (capitalLetters >= 5) strength += 33;
   if (symbols >= 6) strength += 33;
   if (hyphens >= 2) strength += 34;
-  
+
   // Update progress bar
-  strengthBar.style.width = strength + '%';
-  
+  strengthBar.style.width = strength + "%";
+
   // Update color based on strength
   if (strength < 33) {
-      strengthBar.className = 'progress-bar bg-danger';
+    strengthBar.className = "progress-bar bg-danger";
   } else if (strength < 66) {
-      strengthBar.className = 'progress-bar bg-warning';
+    strengthBar.className = "progress-bar bg-warning";
   } else {
-      strengthBar.className = 'progress-bar bg-success';
+    strengthBar.className = "progress-bar bg-success";
   }
 }
 
-function validatePassword(){
+function validatePassword() {
   var password = document.getElementById("password").value;
   updatePasswordStrength(password);
-  var passwordRegex = /^(?=(?:.*[A-Z]){5})(?=(?:.*[!@#$%^&*]){6})(?=(?:.*-){2})[A-Z!@#$%^&*-]{13}$/;
+  var passwordRegex =
+    /^(?=(?:.*[A-Z]){5})(?=(?:.*[!@#$%^&*]){6})(?=(?:.*-){2})[A-Z!@#$%^&*-]{13}$/;
   if (!passwordRegex.test(password)) {
     document.getElementById("password").style.borderColor = "red";
     document.getElementById("passwordError").style.display = "block";
@@ -75,4 +87,3 @@ function validatePassword(){
     document.getElementById("passwordError").style.display = "none";
   }
 }
-
