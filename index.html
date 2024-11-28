@@ -17,7 +17,8 @@
         <form action="" id="form">
           <div class="mb-3">
             <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" id="email" placeholder="Enter your email" onblur="verify('email')">
+            <input type="email" class="form-control" id="email" placeholder="Enter your email"
+              oninput="verify('email')">
             <div class="invalid-feedback" id="emailError" style="display: none;">
               Please enter a valid email address.
             </div>
@@ -25,7 +26,7 @@
 
           <div class="mb-3">
             <label for="" class="form-label">User</label>
-            <input type="text" class="form-control" id="user" placeholder="Enter your user">
+            <input type="text" class="form-control" id="user" placeholder="Enter your user" oninput="verify('user')">
             <div class="invalid-feedback" id="userError" style="display: none;">
               Please enter a valid user.
             </div>
@@ -33,7 +34,16 @@
 
           <div class="mb-3">
             <label for="" class="form-label">Password</label>
-            <input type="password" class="form-control" id="password" placeholder="Enter your password">
+            <input type="password" class="form-control" id="password" placeholder="Enter your password"
+              oninput="verify('password')">
+            <div class="invalid-feedback" id="passwordError" style="display: none;">
+              Please enter a valid password.
+            </div>
+            <!-- Add password strength indicator -->
+            <div class="progress mt-2" style="height: 5px;">
+              <div class="progress-bar" id="passwordStrength" role="progressbar" style="width: 0%"></div>
+            </div>
+            <small class="text-muted">Password must contain: 5 capital letters, 6 symbols, and 2 hyphens</small>
           </div>
 
 
